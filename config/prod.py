@@ -1,6 +1,6 @@
 # -*- coding:utf-8 -*-
 
-HP_HOST = 'https://api.wisecashier.com/{url}'
+HP_HOST = 'https://api.hipopay.com/{url}'
 MERCHANT_API_VERSION = '1.0'
 MERCHANT_NO = 'your_merchant_no'
 MERCHANT_PRIVATE_KEY = '''
