@@ -12,7 +12,7 @@ if __name__ == '__main__':
         'currency': 'HKD',                         # 支付单结算币种
         'product_info': 'test product',            # 商品信息
         'appid': MERCHANT_MINI_APPID,              # 微信appid
-        'openid': 'test product',                  # 用户openid
+        'openid': 'user_openid',                   # 用户openid
         'client_ip': 'test_agent_order_id',        # 客户端设备IP地址
         'notify_url': 'your_notify_url',           # 异步通知地址
     }

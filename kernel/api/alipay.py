@@ -26,6 +26,11 @@ class Alipay(Base):
         request = HipopayRequest('alipay/qrcode/payment', params)
         request.post()
 
+    def consumer_scan_web(self, params):
+        params = self.__is_hk(params)
+        request = HipopayRequest('alipay/web/payment', params)
+        request.post()
+
     def merchant_scan_conumer(self, params):
         params = self.__is_hk(params)
         request = HipopayRequest('alipay/barcode/payment', params)

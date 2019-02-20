@@ -13,8 +13,8 @@ class Base(object):
         return params
 
     def get_bill(self, params):
-        # TODO:
-        pass
+        request = HipopayRequest('download_bill', params)
+        request.get()
 
     def get_payment(self, params):
         request = HipopayRequest('payment', params)
