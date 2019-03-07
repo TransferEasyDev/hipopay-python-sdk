@@ -36,5 +36,5 @@ class WechatCn(Base):
         request.post()
 
     def get_rate(self, params):
-        request = HipopayRequest('wechatpay/rate', params)
+        request = HipopayRequest('wechatpay/forex_rate', params)
         request.get()

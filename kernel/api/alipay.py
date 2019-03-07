@@ -37,5 +37,5 @@ class Alipay(Base):
         request.post()
 
     def get_rate(self, params):
-        request = HipopayRequest('alipay/rate', params)
+        request = HipopayRequest('alipay/forex_rate', params)
         request.get()

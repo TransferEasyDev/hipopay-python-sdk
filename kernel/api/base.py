@@ -21,9 +21,9 @@ class Base(object):
         request.get()
 
     def refund(self, params):
-        request = HipopayRequest('refund', params)
+        request = HipopayRequest('payment_refund', params)
         request.post()
 
     def get_refund(self, params):
-        request = HipopayRequest('refund', params)
+        request = HipopayRequest('payment_refund', params)
         request.get()
