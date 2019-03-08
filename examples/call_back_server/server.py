@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, Response
 
 from kernel.callback_sign import verify_hp_signature
 
@@ -40,10 +40,10 @@ def notify_url(**kwargs):
         out_trade_id=request.values.get('agent_order_id'),
     )
     print json.dumps(params, ensure_ascii=False, indent=2)
-    d = {'meta': {
-        'success': True, 'status_code': 200,
-        'message': "Requset Successes"
-    }}
-    return jsonify(d)
+    return 'success'
+
+
+if __name__ == '__main__':
+    app.run(host=app_host, port=app_port)
 
 
