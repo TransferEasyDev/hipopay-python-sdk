@@ -28,16 +28,17 @@ def notify_url(**kwargs):
     import json
     params = dict(
         status=request.values.get('status'),
-        openid=request.values.get('openid'),
         trade_type=request.values.get('trade_type'),
         exchange_rate=request.values.get('exchange_rate'),
-        payment_no=request.values.get('no'),
+        payment_no=request.values.get('payment_no'),
         currency=request.values.get('currency'),
+        settle_currency=request.values.get('settle_currency'),
         amount=request.values.get('amount'),
         trade_time=request.values.get('trade_time'),
+        finish_time=request.values.get('finish_time'),
         pay_currency=request.values.get('pay_currency'),
         pay_amount=request.values.get('pay_amount'),
-        out_trade_id=request.values.get('agent_order_id'),
+        out_trade_id=request.values.get('out_trade_id'),
     )
     print json.dumps(params, ensure_ascii=False, indent=2)
     return 'success'
