@@ -21,6 +21,9 @@ class HipopayRequest(object):
             "Timestamp": self.timestamp,
             "Signature": self.signature
         }
+        if api_url == 'download_bill':
+            self.headers["Version"] = '3.0'
+
         print self.url
         print json.dumps(self.params, ensure_ascii=False, indent=2)
         print json.dumps(self.headers, ensure_ascii=False, indent=2)
