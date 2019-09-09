@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+</head>
+<body>
+<button id="pay-btn" style="width:200px;height:200px;">支付</button>
+
+<input type="hidden" id="openid" value="{{openid}}">
+<input type="hidden" id="merchant_no" value="{{merchant_no}}">
+
+</body>
+</html>
+<script src="http://mzepgy.natappfree.cc/static/js/jquery-1.8.0.min.js" type="text/javascript"></script>
+<!--<script src="http://your_domain/static/js/jquery-1.8.0.min.js" type="text/javascript"></script>-->
+<script type="text/javascript">
+$(function(){
+    var js_api_param = {};
+    alert($("#merchant_no").val());
+    alert($("#openid").val());
+    //调用微信JS api 支付
+    function jsApiCall() {
+      WeixinJSBridge.invoke('getBrandWCPayRequest', js_api_param,
+                            function (res) {
+        if (res.err_msg == "get_brand_wcpay_request:ok") {
+          alert('支付成功');
+        }
+
+        if (res.err_msg == "get_brand_wcpay_request:cancel") {
+           alert('取消支付');
+        }
+
+        if (res.err_msg == "get_brand_wcpay_request:fail") {
+           alert('支付失败');
+        }
+      });
+    }
+
+    //点击确认支付
+    $('#pay-btn').on('click', function () {
+
+      $.ajax({
+        async: true,
+        url: 'https://api.wisecashier.com/wechatpay/hk/online/mp/payment',
+        type: 'POST',
+        data: {
+            'merchant_no': $("#merchant_no").val(),
+            'amount': '1.00',
+            'openid': $("#openid").val(),
+            'currency': 'HKD',
+            'out_trade_id': 'test0909001',
+            'product_info': 'TEST',
+            'client_ip': '0.0.0.0',
+            'notify_url': 'http://121.42.226.61:31009/mpay_cb'
+        },
+        headers: {
+          'Version': '1.0'
+        },
+        beforeSend: function () {
+        },
+        success: function (r) {
+          // alert(r);
+          if (r.is_success) {
+            // alert(r.is_success);
+            // alert(r.response.js_param);
+
+            js_api_param = r.response.js_params;
+            if (typeof WeixinJSBridge == "undefined") {
+              if (document.addEventListener) {
+                document.addEventListener('WeixinJSBridgeReady', jsApiCall, false);
+              } else if (document.attachEvent) {
+                document.attachEvent('WeixinJSBridgeReady', jsApiCall);
+                document.attachEvent('onWeixinJSBridgeReady', jsApiCall);
+              }
+            } else {
+              jsApiCall();
+            }
+          }
+        },
+        complete: function () {
+        }
+      });
+    });
+});
+
+
+
+var js_api_param = {};
+
+//调用微信JS api 支付
+function jsApiCall() {
+  WeixinJSBridge.invoke('getBrandWCPayRequest', js_api_param, function (res) {
+    if (res.err_msg == "get_brand_wcpay_request:ok") {
+      alert('支付成功');
+    }
+
+    if (res.err_msg == "get_brand_wcpay_request:cancel") {
+       alert('取消支付');
+    }
+
+    if (res.err_msg == "get_brand_wcpay_request:fail") {
+       alert('支付失败');
+    }
+  });
+}
+</script>
+
+

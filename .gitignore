@@ -96,3 +96,4 @@ ENV/
 config/dev.py
 sicpay.py
 sicpay
+trade_desk.py
